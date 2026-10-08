@@ -1,0 +1,970 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #202020 0%,
+            #111 45%,
+            #050505 100%
+        );
+
+    overflow-x: hidden;
+
+    transition:
+        background 0.8s ease;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.container {
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 100px;
+
+    padding: 40px;
+}
+
+
+/* =========================================
+   LAMP SECTION
+========================================= */
+
+.lamp-section {
+    width: 360px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    position: relative;
+}
+
+
+/* =========================================
+   LAMP WRAPPER
+========================================= */
+
+.lamp-wrapper {
+    width: 300px;
+    height: 420px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+}
+
+
+/* =========================================
+   LIGHT RADIUS
+========================================= */
+
+.lamp-wrapper::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 560px;
+    height: 560px;
+
+    left: 50%;
+    top: 55px;
+
+    transform:
+        translateX(-50%)
+        scale(0.3);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 215, 70, 0.4) 0%,
+            rgba(255, 190, 30, 0.2) 25%,
+            rgba(255, 180, 0, 0.07) 50%,
+            transparent 72%
+        );
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.8s ease,
+        transform 1s ease;
+}
+
+
+body[data-on="true"] .lamp-wrapper::before {
+
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        scale(1);
+
+    animation:
+        lightPulse 3s ease-in-out infinite;
+}
+
+
+@keyframes lightPulse {
+
+    0%,
+    100% {
+        opacity: 0.75;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   SVG
+========================================= */
+
+.lamp-svg {
+    width: 300px;
+    height: 420px;
+
+    overflow: visible;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================
+   LAMP SHADE
+========================================= */
+
+.lamp-shade {
+
+    fill: #242424;
+
+    stroke: #444;
+
+    stroke-width: 2;
+
+    transition:
+        fill 0.5s ease,
+        stroke 0.5s ease,
+        filter 0.5s ease;
+}
+
+
+/* =========================================
+   LAMP BASE
+========================================= */
+
+.lamp-base {
+
+    fill: #303030;
+
+    transition:
+        fill 0.5s ease,
+        filter 0.5s ease;
+}
+
+
+/* =========================================
+   INNER GLOW
+========================================= */
+
+.inner-glow {
+
+    fill: transparent;
+
+    opacity: 0;
+
+    transition:
+        fill 0.5s ease,
+        opacity 0.5s ease,
+        filter 0.5s ease;
+}
+
+
+/* =========================================
+   CORD
+========================================= */
+
+.pull-cord {
+    cursor: pointer;
+}
+
+
+.cord-line {
+
+    stroke: #777;
+
+    stroke-width: 3;
+
+    stroke-linecap: round;
+
+    transition:
+        stroke 0.3s ease;
+}
+
+
+.cord-bead {
+
+    fill: #999;
+
+    stroke: #444;
+
+    stroke-width: 2;
+
+    transform-box: fill-box;
+
+    transform-origin: center;
+
+    transition:
+        fill 0.3s ease;
+}
+
+
+.pull-cord:hover .cord-bead {
+
+    fill: white;
+}
+
+
+.pull-cord:hover .cord-line {
+
+    stroke: #bbb;
+}
+
+
+/* =========================================
+   CORD ANIMATION
+========================================= */
+
+.pull-cord.pulling .cord-bead {
+
+    animation:
+        pullCord 0.4s ease;
+}
+
+
+@keyframes pullCord {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    30% {
+        transform: translateY(18px);
+    }
+
+    60% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================
+   LAMP TEXT
+========================================= */
+
+.lamp-text {
+
+    margin-top: -5px;
+
+    text-align: center;
+
+    color: #555;
+
+    font-size: 13px;
+
+    letter-spacing: 0.5px;
+
+    transition:
+        color 0.5s ease;
+}
+
+
+body[data-on="true"] .lamp-text {
+
+    color: #e3c34c;
+}
+
+
+/* =========================================
+   LAMP ON
+========================================= */
+
+body[data-on="true"] {
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #443811 0%,
+            #211c0d 35%,
+            #080808 80%
+        );
+}
+
+
+body[data-on="true"] .lamp-shade {
+
+    fill: #ffd95a;
+
+    stroke: #fff0a0;
+
+    filter:
+        drop-shadow(0 0 8px #ffd95a)
+        drop-shadow(0 0 20px #ffc400)
+        drop-shadow(0 0 45px rgba(255, 190, 0, 0.8));
+}
+
+
+body[data-on="true"] .lamp-base {
+
+    fill: #555;
+
+    filter:
+        drop-shadow(
+            0 0 8px rgba(255, 200, 40, 0.2)
+        );
+}
+
+
+body[data-on="true"] .inner-glow {
+
+    fill: #fff4a5;
+
+    opacity: 1;
+
+    filter:
+        blur(7px)
+        drop-shadow(0 0 20px #ffd000)
+        drop-shadow(0 0 40px #ffbd00);
+}
+
+
+/* =========================================
+   LOGIN SECTION
+========================================= */
+
+.login-section {
+
+    width: 420px;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+
+/* =========================================
+   LOGIN CARD - HIDDEN
+========================================= */
+
+.login-card {
+
+    width: 100%;
+
+    padding: 38px;
+
+    border-radius: 22px;
+
+    background:
+        rgba(20, 20, 20, 0.94);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.6);
+
+    backdrop-filter:
+        blur(15px);
+
+    /* MUHIM:
+       Lampa o'chirilganda
+       login butunlay yashirin */
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform:
+        translateY(35px)
+        scale(0.88);
+
+    transition:
+        opacity 0.7s ease,
+        visibility 0.7s ease,
+        transform 0.7s ease,
+        box-shadow 0.7s ease,
+        border-color 0.7s ease;
+}
+
+
+/* =========================================
+   LOGIN CARD - VISIBLE
+========================================= */
+
+body[data-on="true"] .login-card {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    border-color:
+        rgba(255, 210, 70, 0.25);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.6),
+        0 0 50px rgba(255, 190, 30, 0.08);
+}
+
+
+/* =========================================
+   LOGIN HEADER
+========================================= */
+
+.login-header {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+.login-icon {
+
+    width: 60px;
+    height: 60px;
+
+    margin: 0 auto 16px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 17px;
+
+    background:
+        rgba(255, 210, 60, 0.1);
+
+    font-size: 27px;
+
+    box-shadow:
+        0 0 0 transparent;
+
+    transition:
+        background 0.5s ease,
+        box-shadow 0.5s ease;
+}
+
+
+body[data-on="true"] .login-icon {
+
+    background:
+        rgba(255, 210, 60, 0.15);
+
+    box-shadow:
+        0 0 25px rgba(255, 200, 40, 0.12);
+}
+
+
+.login-header h1 {
+
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+
+.login-header p {
+
+    color: #858585;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   INPUT GROUP
+========================================= */
+
+.input-group {
+
+    margin-bottom: 20px;
+}
+
+
+.input-group label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #bbb;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   INPUT WRAPPER
+========================================= */
+
+.input-wrapper {
+
+    position: relative;
+
+    width: 100%;
+}
+
+
+.input-icon {
+
+    position: absolute;
+
+    left: 15px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    font-size: 16px;
+
+    opacity: 0.55;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   INPUT
+========================================= */
+
+.input-wrapper input {
+
+    width: 100%;
+
+    height: 52px;
+
+    padding:
+        0 48px
+        0 45px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid #343434;
+
+    outline: none;
+
+    background: #141414;
+
+    color: white;
+
+    font-size: 14px;
+
+    transition:
+        border 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.input-wrapper input::placeholder {
+
+    color: #5d5d5d;
+}
+
+
+.input-wrapper input:focus {
+
+    border-color: #d9ad25;
+
+    background: #181818;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(217, 173, 37, 0.08);
+}
+
+
+/* =========================================
+   PASSWORD TOGGLE
+========================================= */
+
+.password-toggle {
+
+    position: absolute;
+
+    right: 10px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    opacity: 0.55;
+
+    transition:
+        opacity 0.3s ease;
+}
+
+
+.password-toggle:hover {
+
+    opacity: 1;
+}
+
+
+/* =========================================
+   FORM OPTIONS
+========================================= */
+
+.form-options {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 24px;
+
+    font-size: 12px;
+}
+
+
+.remember {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #858585;
+
+    cursor: pointer;
+}
+
+
+.remember input {
+
+    width: 15px;
+    height: 15px;
+
+    accent-color: #d9ad25;
+
+    cursor: pointer;
+}
+
+
+.form-options a {
+
+    color: #d9ad25;
+
+    text-decoration: none;
+
+    transition:
+        color 0.3s ease;
+}
+
+
+.form-options a:hover {
+
+    color: #ffe07a;
+
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   LOGIN BUTTON
+========================================= */
+
+.login-btn {
+
+    width: 100%;
+
+    height: 53px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d6a91f,
+            #f0c84b
+        );
+
+    color: #171717;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 12px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(218, 170, 30, 0.18);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.3s ease,
+        filter 0.3s ease;
+}
+
+
+.login-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(218, 170, 30, 0.28);
+
+    filter:
+        brightness(1.06);
+}
+
+
+.login-btn:active {
+
+    transform:
+        translateY(0)
+        scale(0.98);
+}
+
+
+.arrow {
+
+    font-size: 20px;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.login-btn:hover .arrow {
+
+    transform:
+        translateX(5px);
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+.message {
+
+    min-height: 20px;
+
+    margin-top: 14px;
+
+    text-align: center;
+
+    color: #d9ad25;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   REGISTER
+========================================= */
+
+.register {
+
+    margin-top: 25px;
+
+    padding-top: 22px;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.07);
+
+    text-align: center;
+
+    color: #666;
+
+    font-size: 13px;
+}
+
+
+.register a {
+
+    margin-left: 5px;
+
+    color: #d9ad25;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+.register a:hover {
+
+    color: #ffe07a;
+
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .container {
+
+        flex-direction: column;
+
+        gap: 0;
+
+        padding: 20px;
+    }
+
+
+    .lamp-section {
+
+        transform:
+            scale(0.72);
+
+        margin-bottom:
+            -70px;
+    }
+
+
+    .login-section {
+
+        width:
+            min(420px, 100%);
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .container {
+
+        padding:
+            10px 15px 35px;
+    }
+
+
+    .lamp-section {
+
+        transform:
+            scale(0.58);
+
+        margin-bottom:
+            -115px;
+    }
+
+
+    .login-card {
+
+        padding:
+            28px 20px;
+
+        border-radius:
+            18px;
+    }
+
+
+    .login-header h1 {
+
+        font-size: 25px;
+    }
+
+
+    .form-options {
+
+        font-size: 11px;
+    }
+}

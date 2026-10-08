@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Light Login</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-on="false">
+
+    <main class="container">
+
+        <!-- =========================
+             LAMP
+        ========================== -->
+
+        <section class="lamp-section">
+
+            <div class="lamp-wrapper">
+
+                <svg
+                    class="lamp-svg"
+                    viewBox="0 0 200 300"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+
+                    <!-- Light -->
+                    <ellipse
+                        class="inner-glow"
+                        cx="100"
+                        cy="110"
+                        rx="60"
+                        ry="30"
+                    />
+
+                    <!-- Lamp stand -->
+                    <rect
+                        class="lamp-base"
+                        x="92"
+                        y="100"
+                        width="16"
+                        height="160"
+                        rx="8"
+                    />
+
+                    <!-- Lamp bottom -->
+                    <rect
+                        class="lamp-base"
+                        x="60"
+                        y="250"
+                        width="80"
+                        height="12"
+                        rx="6"
+                    />
+
+                    <!-- Pull cord -->
+                    <g class="pull-cord">
+
+                        <line
+                            class="cord-line"
+                            x1="130"
+                            y1="110"
+                            x2="130"
+                            y2="180"
+                        />
+
+                        <circle
+                            class="cord-bead"
+                            cx="130"
+                            cy="190"
+                            r="7"
+                        />
+
+                        <!-- Click area -->
+                        <circle
+                            class="cord-hit"
+                            cx="130"
+                            cy="190"
+                            r="28"
+                            fill="transparent"
+                        />
+
+                    </g>
+
+                    <!-- Lamp shade -->
+                    <path
+                        class="lamp-shade"
+                        d="
+                            M30 110
+                            C30 50, 170 50, 170 110
+                            C170 125, 30 125, 30 110
+                        "
+                    />
+
+                </svg>
+
+            </div>
+
+            <p class="lamp-text">
+                Pull the cord to turn on the light
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             LOGIN
+        ========================== -->
+
+        <section class="login-section">
+
+            <div class="login-card">
+
+                <!-- Header -->
+
+                <div class="login-header">
+
+                    <div class="login-icon">
+                        🔐
+                    </div>
+
+                    <h1>Welcome Back</h1>
+
+                    <p>
+                        Sign in to continue to your account
+                    </p>
+
+                </div>
+
+
+                <!-- Form -->
+
+                <form id="loginForm">
+
+                    <!-- Username -->
+
+                    <div class="input-group">
+
+                        <label for="username">
+                            Username
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                👤
+                            </span>
+
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                placeholder="Enter your username"
+                                autocomplete="username"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+
+                    <div class="input-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="passwordToggle"
+                            >
+                                👁️
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Remember / Forgot -->
+
+                    <div class="form-options">
+
+                        <label class="remember">
+
+                            <input
+                                type="checkbox"
+                                id="remember"
+                            >
+
+                            <span>
+                                Remember me
+                            </span>
+
+                        </label>
+
+
+                        <a
+                            href="#"
+                            id="forgotPassword"
+                        >
+                            Forgot password?
+                        </a>
+
+                    </div>
+
+
+                    <!-- Login button -->
+
+                    <button
+                        type="submit"
+                        class="login-btn"
+                    >
+
+                        <span>
+                            Login
+                        </span>
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <!-- Message -->
+
+                    <div
+                        class="message"
+                        id="message"
+                    ></div>
+
+                </form>
+
+
+                <!-- Register -->
+
+                <div class="register">
+
+                    <span>
+                        Don't have an account?
+                    </span>
+
+                    <a
+                        href="#"
+                        id="registerLink"
+                    >
+                        Create account
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
